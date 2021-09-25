@@ -28,17 +28,19 @@ async function fetchResponse() {
 }
 
 function main(cloneURLS) {
-  cloneURLS.forEach((repo) => {
-    clone(repo);
-  });
-}
-
-function clone(repo) {
   let dir = DIRNAME;
   if (!DIRNAME) {
     executeCommand('mkdir repos');
     dir = 'repos';
   }
+
+  cloneURLS.forEach((repo) => {
+    clone(repo,dir);
+  });
+  // clone(cloneURLS[2],dir)
+}
+
+function clone(repo,dir) {
   const cloneCommand = `cd ${dir}; git clone ${repo}`;
   executeCommand(cloneCommand);
 }
