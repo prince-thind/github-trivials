@@ -2,59 +2,64 @@ require('dotenv').config();
 const fetch = (...args) =>
   import('node-fetch').then(({ default: fetch }) => fetch(...args));
 const { exec } = require('child_process');
-const DIRNAME = process.argv[2];
+const DIRNAME = process.argv[2] || 'cloner-output';
 
-getCloneURLs().then((cloneURLS) => {
-  main(cloneURLS);
-});
+
+try {
+  main();
+} catch (err) {
+  console.log(`Unknown error: ${err}`);
+}
+
+async function main() {
+  const cloneURLS = await getCloneURLs();
+  for (url of cloneURLS) {
+    clone(url);
+  }
+  // clone(cloneURLS[1]);
+}
 
 async function getCloneURLs() {
-  const arr = await fetchResponse()
-    .then((res) => res.json())
-    .then((responseObject) => {
-      const items = Array.from(responseObject.items);
-      return items.map((item) => item.ssh_url);
-    });
-  return arr;
+  const response = await fetchResponse();
+  const jsonResponse = await response.json();
+  const items = Array.from(jsonResponse.items);
+  const res = items.map((item) => item.ssh_url);
+  return res;
 }
 
 async function fetchResponse() {
   const response = await fetch(process.env.URL, {
     headers: {
-      authorization: `token ${process.env.AUTH_TOKEN}`,
+      authorization: `token ${process.env.GITHUB_TOKEN}`,
     },
   });
   return response;
 }
 
-function main(cloneURLS) {
-  let dir = DIRNAME;
-  if (!DIRNAME) {
-    executeCommand('mkdir repos');
-    dir = 'repos';
+async function clone(repo, dir) {
+  if (dir == null) {
+    dir = DIRNAME;
   }
-
-  cloneURLS.forEach((repo) => {
-    clone(repo,dir);
-  });
-  // clone(cloneURLS[2],dir)
+  const cloneCommand = `mkdir -p ${dir}; cd ${dir}; git clone ${repo}`;
+  try {
+    await executeCommand(cloneCommand);
+  } catch (err) {
+    console.log(`commnad line error: ${err}`);
+  }
 }
 
-function clone(repo,dir) {
-  const cloneCommand = `cd ${dir}; git clone ${repo}`;
-  executeCommand(cloneCommand);
-}
-
-function executeCommand(command) {
-  exec(command, (error, stdout, stderr) => {
-    if (error) {
-      console.log(`error: ${error.message}`);
-      return;
-    }
-    if (stderr) {
-      console.log(`stderr: ${stderr}`);
-      return;
-    }
-    console.log(`stdout: ${stdout}`);
+async function executeCommand(command) {
+  return new Promise((resolve, reject) => {
+    exec(command, (error, stdout, stderr) => {
+      if (error) {
+        reject({ error });
+      }
+      if (stderr) {
+        console.log(`strerr: ${stderr}`);
+        resolve();
+      }
+      console.log(`stdout: ${stdout}`);
+      resolve();
+    });
   });
 }
