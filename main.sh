@@ -1,3 +1,4 @@
+#!/bin/bash
 echo 'git-cloner started';
 echo -e 'please wait, installing npm scripts, if you see an error here make sure you have npm installed \n\n\n';
 npm install;
