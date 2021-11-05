@@ -4,7 +4,7 @@ common profile update tasks done via github-api
 clone all your github repositories at once with simple script
 
 # .env format
-GITHUB_TOKEN=YOUR_TOKEN_HERE
+GITHUB_TOKEN=YOUR_TOKEN_HERE \
 URL=https://api.github.com/search/repositories?q=user:USERNAME&per_page=100 
 
 # how to use:
