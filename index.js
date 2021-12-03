@@ -1,30 +1,30 @@
-require('dotenv').config();
+require("dotenv").config();
 const fetch = (...args) =>
-  import('node-fetch').then(({ default: fetch }) => fetch(...args));
-const { exec } = require('child_process');
-const DIRNAME = process.argv[2] || 'cloner-output';
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const { exec } = require("child_process");
+const DIRNAME = process.argv[2] || "cloner-output";
 
-
-try {
-  main();
-} catch (err) {
-  console.log(`Unknown error: ${err}`);
-}
+main();
 
 async function main() {
   const cloneURLS = await getCloneURLs();
-  for (url of cloneURLS) {
+  for (const url of cloneURLS) {
     clone(url);
   }
-  // clone(cloneURLS[1]);
+  // clone(cloneURLS[1]); // debugging purposes
 }
 
 async function getCloneURLs() {
-  const response = await fetchResponse();
-  const jsonResponse = await response.json();
-  const items = Array.from(jsonResponse.items);
-  const res = items.map((item) => item.ssh_url);
-  return res;
+  try {
+    const response = await fetchResponse();
+    const jsonResponse = await response.json();
+    const items = Array.from(jsonResponse.items);
+    const res = items.map((item) => item.ssh_url);
+    return res;
+  } catch (err) {
+    console.log("Error fetching The Response");
+    return [];
+  }
 }
 
 async function fetchResponse() {
