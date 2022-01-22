@@ -1,0 +1,20 @@
+{
+  "name": "github-api",
+  "version": "1.0.0",
+  "description": "common profile update tasks done via github-api",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Prince-Thind/github-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Prince-Thind/github-api/issues"
+  },
+  "homepage": "https://github.com/Prince-Thind/github-api#readme"
+}
