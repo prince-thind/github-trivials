@@ -4,7 +4,9 @@
   "description": "common profile update tasks done via github-api",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "togglePrivacy": "ndoe ./changeVisibilty.js",
+    "fetchRepos": "node ./fetchRepos.js"
   },
   "repository": {
     "type": "git",
