@@ -5,6 +5,7 @@ const fs = require("fs");
 
 const excluded = [];
 const repos = JSON.parse(fs.readFileSync("./output/repos.json"));
+const mode = "private";
 
 main();
 
@@ -13,7 +14,7 @@ async function main() {
     if (excluded.some((e) => e.id == id)) {
       continue;
     }
-    toggleVisibility(id)
+    toggleVisibility(id);
   }
 }
 
@@ -21,7 +22,7 @@ async function toggleVisibility(id) {
   try {
     await axios.patch(
       process.env.REPO_URL + id,
-      { visibility: "private" },
+      { visibility: mode },
       {
         headers: {
           authorization: `token ${process.env.GITHUB_TOKEN}`,
