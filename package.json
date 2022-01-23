@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/Prince-Thind/github-api/issues"
   },
-  "homepage": "https://github.com/Prince-Thind/github-api#readme"
+  "homepage": "https://github.com/Prince-Thind/github-api#readme",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "dotenv": "^14.2.0"
+  }
 }
