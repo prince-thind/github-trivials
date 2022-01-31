@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "togglePrivacy": "ndoe ./changeVisibilty.js",
-    "fetchRepos": "node ./fetchRepos.js"
+    "toggle": "node ./changeVisibility.js",
+    "fetch": "node ./fetchRepos.js"
   },
   "repository": {
     "type": "git",

@@ -1,15 +1,18 @@
 require("dotenv").config();
+const fetchResponses = require("./fetchRepos.js");
 
 const axios = require("axios");
 const fs = require("fs");
 
 const excluded = [];
-const repos = JSON.parse(fs.readFileSync("./output/repos.json"));
 const mode = "private";
 
 main();
 
 async function main() {
+  await fetchResponses;
+  const repos = JSON.parse(fs.readFileSync("./repos.json"));
+
   for (const { id } of repos) {
     if (excluded.some((e) => e.id == id)) {
       continue;

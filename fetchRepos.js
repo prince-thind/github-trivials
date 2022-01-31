@@ -3,7 +3,7 @@ require("dotenv").config();
 const axios = require("axios");
 const fs = require("fs");
 
-main();
+const mainPromise=main();
 
 async function main() {
   const data = await getRepos();
@@ -30,3 +30,5 @@ async function fetchResponse() {
   });
   return response.data;
 }
+
+module.exports= mainPromise;
