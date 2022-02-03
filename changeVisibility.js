@@ -5,7 +5,7 @@ const axios = require("axios");
 const fs = require("fs");
 
 const excluded = [];
-const mode = "private";
+const mode = getMode();
 
 main();
 
@@ -35,4 +35,12 @@ async function toggleVisibility(id) {
   } catch (err) {
     console.log(err);
   }
+}
+
+function getMode() {
+  const mode = process.argv[2];
+  if (mode == "private" || mode == "public") {
+    return mode;
+  }
+  return "private";
 }
