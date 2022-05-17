@@ -1,8 +1,10 @@
 .env
-/output
+**/output
 /temp
 /node_modules
 *.temp
 *.tmp
 **/tmp
 repos.json
+
+!**/output/.gitkeep

@@ -1,10 +1,7 @@
 require("dotenv").config();
+const axios = require("axios");
 
-
-const fetch = (...args) =>
-  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 const { exec } = require("child_process");
-const DIRNAME = process.argv[2] || "cloner-output";
 
 main();
 
@@ -19,8 +16,7 @@ async function main() {
 async function getCloneURLs() {
   try {
     const response = await fetchResponse();
-    const jsonResponse = await response.json();
-    const items = Array.from(jsonResponse.items);
+    const items = Array.from(response.items);
     const res = items.map((item) => item.ssh_url);
     return res;
   } catch (err) {
@@ -30,19 +26,16 @@ async function getCloneURLs() {
 }
 
 async function fetchResponse() {
-  const response = await fetch(process.env.URL, {
+  const response = await axios.get(process.env.URL, {
     headers: {
       authorization: `token ${process.env.GITHUB_TOKEN}`,
     },
   });
-  return response;
+  return response.data;
 }
 
-async function clone(repo, dir) {
-  if (dir == null) {
-    dir = DIRNAME;
-  }
-  const cloneCommand = `mkdir -p ${dir}; cd ${dir}; git clone ${repo}`;
+async function clone(repo) {
+  const cloneCommand = `cd ./cloner/output; git clone ${repo}`;
   try {
     await executeCommand(cloneCommand);
   } catch (err) {
@@ -54,7 +47,7 @@ async function executeCommand(command) {
   return new Promise((resolve, reject) => {
     exec(command, (error, stdout, stderr) => {
       if (error) {
-        reject({ error });
+        reject(error);
       }
       if (stderr) {
         console.log(`strerr: ${stderr}`);
