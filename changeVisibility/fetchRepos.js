@@ -3,8 +3,6 @@ require("dotenv").config();
 const axios = require("axios");
 const fs = require("fs");
 
-const mainPromise=main();
-
 async function main() {
   const data = await getRepos();
   const repos = data.map((repo) => ({
@@ -13,7 +11,7 @@ async function main() {
   }));
 
   const res = JSON.stringify(repos, null, 1);
-  fs.writeFileSync("repos.json", res);
+  fs.writeFileSync("./changeVisibility/repos.json", res);
 }
 
 async function getRepos() {
@@ -31,4 +29,4 @@ async function fetchResponse() {
   return response.data;
 }
 
-module.exports= mainPromise;
+module.exports= main;
