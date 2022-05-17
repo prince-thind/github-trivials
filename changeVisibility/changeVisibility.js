@@ -4,24 +4,29 @@ const fetchResponses = require("./fetchRepos.js");
 const axios = require("axios");
 const fs = require("fs");
 
-const excluded = [];
+const special = [
+
+];
+
 const mode = getMode();
 
 main();
 
 async function main() {
-  await fetchResponses;
-  const repos = JSON.parse(fs.readFileSync("./repos.json"));
+  await fetchResponses();
+  const repos = JSON.parse(fs.readFileSync("./changeVisibility/repos.json"));
 
   for (const { id } of repos) {
-    if (excluded.some((e) => e.id == id)) {
-      continue;
-    }
-    toggleVisibility(id);
+    special.forEach((e) => {
+      if (e.id == id) {
+        changeVisibility(id, e.mode);
+      }
+    });
+    changeVisibility(id, mode);
   }
 }
 
-async function toggleVisibility(id) {
+async function changeVisibility(id, mode) {
   try {
     await axios.patch(
       process.env.REPO_URL + id,
