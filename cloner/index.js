@@ -20,7 +20,7 @@ async function getCloneURLs() {
     const res = items.map((item) => item.ssh_url);
     return res;
   } catch (err) {
-    console.log("Error fetching The Response");
+    console.log("Error fetching The Response:", err);
     return [];
   }
 }

@@ -1,5 +1,4 @@
 .env
-**/output
 /temp
 /node_modules
 *.temp
@@ -7,4 +6,6 @@
 **/tmp
 repos.json
 
-!**/output/.gitkeep
+
+/cloner/output/*
+!/cloner/output/.gitkeep
