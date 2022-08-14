@@ -14,12 +14,18 @@ async function main() {
   const specialRepos = JSON.parse(
     fs.readFileSync("./changeVisibility/specialRepos.json")
   );
-  const nonSpecialRepos = repos.filter((repo) =>
-    specialRepos.some((r) => r.id != repo.id)
+  const nonSpecialRepos = repos.filter((repo) => {
+    const id = repo.id;
+    const repoPresent = specialRepos.some(r => r.id === id);
+    if (repoPresent) return false;
+    return true;
+  }
   );
+
 
   for (const { id } of nonSpecialRepos) {
     changeVisibility(id, mode);
+
   }
 
   for (const { id, mode } of specialRepos) {

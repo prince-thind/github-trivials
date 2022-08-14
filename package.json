@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "change:private": "node ./changeVisibility/changeVisibility.js private",
     "change:public": "node ./changeVisibility/changeVisibility.js public",
-    "fetch": "node ./changeVisibility/fetchRepos.js",
+    "fetch": "node -e 'require(\"./changeVisibility/fetchRepos.js\")()'",
     "clone": "node ./cloner/index.js",
     "clean": "rm -rf ./cloner/output/*;"
   },
