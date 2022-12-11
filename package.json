@@ -4,7 +4,8 @@
   "description": "common profile update tasks done via github-api",
   "main": "main.js",
   "scripts": {
-    "cloner": "node ./cloner/index.js"
+    "cloner": "node ./cloner/index.js",
+    "clean": "rm -rf ./cloner/output"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,8 @@
   "dependencies": {
     "@octokit/rest": "^19.0.5",
     "dotenv": "^16.0.3",
+    "p-limit": "^4.0.0",
     "shelljs": "^0.8.5"
-  }
+  },
+  "type": "module"
 }
