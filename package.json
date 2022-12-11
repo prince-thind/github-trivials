@@ -5,7 +5,9 @@
   "main": "main.js",
   "scripts": {
     "cloner": "node ./cloner/index.js",
-    "clean": "rm -rf ./cloner/output"
+    "clean": "rm -rf ./cloner/output",
+    "change:private": "node ./changeVisibility/index.js private",
+    "change:public": "node ./changeVisibility/index.js public"
   },
   "repository": {
     "type": "git",

@@ -4,8 +4,8 @@
 *.temp
 *.tmp
 **/tmp
-repos.json
 
 
+ignored.js
 /cloner/output/*
 !/cloner/output/.gitkeep
