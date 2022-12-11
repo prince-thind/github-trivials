@@ -3,6 +3,7 @@ import { Octokit } from "@octokit/rest";
 import shell from 'shelljs'
 import path from 'path'
 import pLimit from 'p-limit'
+import getRepos from '../lib/getRepos';
 dotenv.config();
 
 const octokit = new Octokit({
@@ -12,7 +13,7 @@ const octokit = new Octokit({
 main();
 
 async function main() {
-    const repos = await getRepos();
+    const repos = await getRepos(octokit);
     // const testRepos = repos.filter(r => r.name == 'git-test');
     await cloneRepos(repos)
 }
@@ -36,20 +37,11 @@ async function cloneRepos(repos) {
 
 async function cloneRepo(url) {
     //todo error handling
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         shell.exec(`git clone ${url}`, (code) => {
-            resolve(code)
+            resolve(code);
         })
     })
 
 }
 
-async function getRepos() {
-    const repos = await octokit.rest.repos.listForAuthenticatedUser({
-        affiliation: 'organization_member,owner', per_page: 100
-    });
-    return repos.data.map(e => {
-        const { name, isPrivate, id, ssh_url, homepage } = e;
-        return { name, isPrivate, id, cloneUrl: ssh_url, homepage }
-    });
-}
