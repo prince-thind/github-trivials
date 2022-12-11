@@ -4,11 +4,7 @@
   "description": "common profile update tasks done via github-api",
   "main": "main.js",
   "scripts": {
-    "change:private": "node ./changeVisibility/changeVisibility.js private",
-    "change:public": "node ./changeVisibility/changeVisibility.js public",
-    "fetch": "node -e 'require(\"./changeVisibility/fetchRepos.js\")()'",
-    "clone": "node ./cloner/index.js",
-    "clean": "rm -rf ./cloner/output/*;"
+    "clone":"./cloner/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +18,7 @@
   },
   "homepage": "https://github.com/Prince-Thind/github-trivials#readme",
   "dependencies": {
+    "@octokit/rest": "^19.0.5",
+    "dotenv": "^16.0.3"
   }
 }
