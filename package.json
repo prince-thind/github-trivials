@@ -4,7 +4,7 @@
   "description": "common profile update tasks done via github-api",
   "main": "main.js",
   "scripts": {
-    "cloner": "node ./cloner/index.js",
+    "clone": "node ./cloner/index.js",
     "clean": "rm -rf ./cloner/output",
     "change:private": "node ./changeVisibility/index.js private",
     "change:public": "node ./changeVisibility/index.js public"

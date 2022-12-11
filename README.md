@@ -1,27 +1,33 @@
 # Github Trivials
-Github Trivials is a minimilastic utility to accomplish some fairly trivial tasks via the github API.
+
+Github Trivials is a minimilastic utility to accomplish some fairly trivial tasks via the github API. Currently, the utility uses octokit npm package as a higher level wrapper to make use of the github rest api
 
 # Prerequisites:
-1. Linux Environment
-2. NodeJS
-3. NPM
 
-# .env format
-GITHUB_TOKEN=YOUR_TOKEN_HERE  
-URL=https://api.github.com/search/repositories?q=user:USERNAME&per_page=100    
-REPO_URL=https://api.github.com/repositories/  
-
-# How to use:
-check npm scripts in the package.json.
+1. NodeJS
+2. NPM
 
 examples:
-+ npm run clone (clone all your repos)
-+ npm run change:private (to change all your repos to private)
 
+- npm run clone (clone all your repos)
+- npm run change:private (to change all your repos to private)
 
-# ignored format
+# .env format
 
+GITHUB_TOKEN=YOUR_TOKEN_HERE
 
+# How to use:
 
+The utlity is pretty self explantory, check npm scripts in the package.json for the actual tasks.
 
+## Explicitly defining repository visibility:
 
+you can define repo specific visibilty within the ./changeVisibilty/ignored.js as:
+
+```
+   export default {
+        repoName:{
+            mode: 'private'|'public'
+        }
+    }
+```
