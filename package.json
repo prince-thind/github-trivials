@@ -4,7 +4,7 @@
   "description": "common profile update tasks done via github-api",
   "main": "main.js",
   "scripts": {
-    "clone":"./cloner/index.js"
+    "cloner": "node ./cloner/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Prince-Thind/github-trivials#readme",
   "dependencies": {
     "@octokit/rest": "^19.0.5",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "shelljs": "^0.8.5"
   }
 }
