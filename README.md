@@ -1,5 +1,5 @@
-# github-api
-common github tasks done via their-api
+# Github Trivials
+Github Trivials is a minimilastic utility to accomplish some fairly trivial tasks via the github API.
 
 # Prerequisites:
 1. Linux Environment
