@@ -12,17 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Prince-Thind/github-api.git"
+    "url": "git+https://github.com/Prince-Thind/github-trivials.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Prince-Thind/github-api/issues"
+    "url": "https://github.com/Prince-Thind/github-trivials/issues"
   },
-  "homepage": "https://github.com/Prince-Thind/github-api#readme",
+  "homepage": "https://github.com/Prince-Thind/github-trivials#readme",
   "dependencies": {
-    "axios": "^0.25.0",
-    "dotenv": "^14.2.0"
   }
 }
