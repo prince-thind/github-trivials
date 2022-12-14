@@ -21,11 +21,12 @@ async function main() {
     for (const repoObj of repos) {
         if (ignoredReposArray.includes(repoObj.name)) {
             //handle special repos
-            changeVisbility(repoObj.ownerName, repoObj.name, ignoredRepos[repoObj.name].mode)
+            changeVisbility(repoObj.ownerName, repoObj.name, ignoredRepos[repoObj.name].mode);
         }
-
-        //handle normal repos
-        changeVisbility(repoObj.ownerName, repoObj.name, mode)
+        else {
+            //handle normal repos
+            changeVisbility(repoObj.ownerName, repoObj.name, mode)
+        }
     }
 
 
