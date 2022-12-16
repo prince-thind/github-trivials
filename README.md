@@ -20,14 +20,20 @@ GITHUB_TOKEN=YOUR_TOKEN_HERE
 
 The utlity is pretty self explantory, check npm scripts in the package.json for the actual tasks.
 
-## Explicitly defining repository visibility:
+## Explicitly defining repository/user/user-organisation visibility:
 
 you can define repo specific visibilty within the ./changeVisibilty/ignored.js as:
 
-```
-   export default {
-        repoName:{
-            mode: 'private'|'public'
-        }
+``` JS
+export default {
+    specialRepos:
+    {
+        'repoName': {
+            mode: 'public|private'
+       }
+    },
+    specialUsers: {
+        "user": 'private|public',
     }
+}
 ```

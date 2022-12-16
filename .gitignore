@@ -6,6 +6,6 @@
 **/tmp
 
 
-ignored.js
+/changeVisibility/config.js
 /cloner/output/*
 !/cloner/output/.gitkeep
