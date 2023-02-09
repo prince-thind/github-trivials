@@ -22,9 +22,9 @@ The utlity is pretty self explantory, check npm scripts in the package.json for 
 
 ## Explicitly defining repository/user/user-organisation visibility:
 
-you can define repo specific visibilty within the ./changeVisibilty/ignored.js as:
+you can define repo specific visibilty within the ./changeVisibilty/config.js as:
 
-``` JS
+```JS
 export default {
     specialRepos:
     {
