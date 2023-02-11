@@ -8,4 +8,5 @@
 
 /changeVisibility/config.js
 /cloner/output/*
+/cloner/bundles/*
 !/cloner/output/.gitkeep

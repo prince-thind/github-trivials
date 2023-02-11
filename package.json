@@ -5,7 +5,9 @@
   "main": "main.js",
   "scripts": {
     "clone": "node ./cloner/index.js",
-    "clean": "rm -rf ./cloner/output",
+    "bundle": "node ./cloner/bundler.js",
+    "backup": "npm run clone; npm run bundle",
+    "clean": "rm -rf ./cloner/output /.cloner/bundles",
     "change:private": "node ./changeVisibility/index.js private",
     "change:public": "node ./changeVisibility/index.js public"
   },
