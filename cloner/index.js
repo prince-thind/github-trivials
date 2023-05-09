@@ -1,9 +1,10 @@
 import dotenv from "dotenv";
 import { Octokit } from "@octokit/rest";
 import shell from "shelljs";
-import path from "path";
 import pLimit from "p-limit";
 import getRepos from "../lib/getRepos.js";
+import config from "./config.js";
+
 dotenv.config();
 
 const octokit = new Octokit({
@@ -14,12 +15,13 @@ main();
 
 async function main() {
   const repos = await getRepos(octokit);
-  // const testRepos = repos.filter(r => r.name == 'git-test');
+  // const repos = (await getRepos(octokit)).filter((r) => r.name == "git-test");
   await cloneRepos(repos);
 }
 
 async function cloneRepos(repos) {
-  const absolutePath = path.resolve("./cloner/output");
+  const absolutePath = config.clonePath;
+
   shell.mkdir("-p", absolutePath);
   shell.cd(absolutePath);
 
